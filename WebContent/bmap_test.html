@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>test</title>
+<link href="../resources/css/style.css" rel="stylesheet">
+<style>
+/* 百度地图关键字提示输入样式修改 */
+.tangram-suggestion {z-index: 4;}
+.tangram-suggestion .route-icon {font-weight: bold;}
+
+/* 将 infoBox自带的关闭img隐藏  */
+.infoBox img[src='close.png'] {display: none;}
+.infoBox {
+	background: url("../resources/imgs/list_bg.png") no-repeat center top;
+	background-size: 100% 100%;
+	width: 240px;
+	height: 91px;
+	margin-bottom: 15px;
+}
+</style>
+</head>
+<body>
+	<!--顶部悬浮栏样式-->
+	<div class="toplayer">		
+		<ul class="list-group">
+			<li class="list-group-item">
+				<a href="javascript:void(0)" onclick="showMenu()">
+					<img src="../resources/imgs/menu.png" width="18" height="16" alt="menu"/>
+				</a>
+			</li>
+			<li class="list-group-item">
+				<input class="search" type="text" id="address" placeholder="请输入地域或街道等关键字" onchange="pointSearch()"/>
+				<span class="search-result" id="searchResultPanel"></span>
+			</li>
+			<li class="list-group-item">
+				<a href="javascript:void(0)" onclick="switchView()">
+					<img src="../resources/imgs/switch.png" width="17" height="18" alt="switch"/>
+				</a>
+			</li>
+			<li class="list-group-item">
+				<a href="javascript:void(0)" onclick="showTopFilter()">
+					<img src="../resources/imgs/filter.png" width="18" height="18" alt="filter"/>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<!--顶部隐藏筛选面板样式-->
+	<div class="topfilter" id="topfilter" data-mark="hide">
+		<ul class="list-group" id="setSex">
+			<li class="list-group-item">
+				<input class="sex sex-focus" type="button" value="不限" onclick="setSex('unlimited')"/>
+			</li>
+			<li class="list-group-item">
+				<input class="sex" type="button" value="男" onclick="setSex(1)"/>
+			</li>
+			<li class="list-group-item">
+				<input class="sex" type="button" value="女" onclick="setSex(0)"/>
+				<input type="hidden" id="sex">
+			</li>
+		</ul>
+		<span class="topfilter-show-distance">
+			<b>距离范围：</b>
+			<span class="range range-assertive">
+            	<input type="range" name="volume" min="0" max="110" value="50" width="90%" step="1" onchange="showDistance()">
+          	</span>
+			<b style="color: #c40204; margin-left: 5px;" id="distance"></b>
+		</span>
+	</div>
+	
+	<!--存放路径-->
+	<input type="hidden" value=".." id="webPath">
+	
+	<!--地图容器container-->
+	<div class="map-container" id="container"></div>
+	
+	<script src="../resources/js/jquery-2.1.4.min.js"></script>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=7gXOhvZ5MckpFniS8Q31j7qN"></script>
+	<script src="../resources/js/bmap/TextIconOverlay.js"></script>
+	<script src="http://api.map.baidu.com/library/InfoBox/1.2/src/InfoBox_min.js"></script>
+	<script src="../resources/js/swiper.min.js"></script>
+	<script src="../resources/js/bmap/RoundOverlayClusterer.js"></script>
+	<script src="../resources/js/map.js"></script>
+</body>
+</html>
